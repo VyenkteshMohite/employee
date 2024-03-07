@@ -9,7 +9,7 @@ const HeaderComponent = () => {
                 <div>
                     <a href = "https://appliedartificialintelligencejournal.blogspot.com/" className='nvabar-brand'>
 
-                            Employee Management WebApplication
+                            Employee Management Application
                     </a>
                 </div>
             </nav>
