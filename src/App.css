@@ -49,3 +49,9 @@
   color: rgb(247, 247, 247);
   text-emphasis-color: white;
 }
+.center-button
+{
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
