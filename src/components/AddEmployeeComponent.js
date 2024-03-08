@@ -1,6 +1,6 @@
 import '../App.css';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link ,useParams} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import EmployeeService from '../services/EmployeeService';
 
@@ -11,6 +11,7 @@ const AddEmployeeComponent = () => {
     const [lastName, setLastName] = useState('')
     const [emailId, setEmailId] = useState('')
     const history = useNavigate();
+    const {id} = useParams();
 
     const saveEmployee = (e) => {
         e.preventDefault();
@@ -28,8 +29,19 @@ const AddEmployeeComponent = () => {
         }).catch(error => {
             console.log(error)
         })
-
     } 
+    
+    useEffect(() => {
+        EmployeeService.getEmployeeById(id).then((response)=>{
+            setFirstName(response.data.firstName)
+            setLastName(response.data.lastName)
+            setEmailId(response.data.emailId)
+        }).catch(error =>{
+            console.log(error)
+        })
+      
+    }, [])
+    
 
     return (
         <div>

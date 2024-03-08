@@ -14,6 +14,9 @@ class EmployeeService{
         //employee contains form data like firstname,lastname,emailid
         //and then its sent to axios which is promise object ogf axios method with the post method
     }
+    getEmployeeById(employeeId){
+        return axios.get(EMPLOYEE_BASE_REST_API_URL + '/' + employeeId);
+    }
 }
 
 export default new EmployeeService();
