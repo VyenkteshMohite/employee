@@ -1,5 +1,8 @@
 import '../App.css';
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import EmployeeService from '../services/EmployeeService';
 
 
 const AddEmployeeComponent = () => {
@@ -7,11 +10,25 @@ const AddEmployeeComponent = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [emailId, setEmailId] = useState('')
+    const history = useNavigate();
 
     const saveEmployee = (e) => {
         e.preventDefault();
+
         const employee = {firstName,lastName,emailId}        
-        console.log(employee)
+       
+        //here we are calling the employeeservice with createEmployee Method and we are passing the employee object 
+        //then is the iterator promise
+        EmployeeService.createEmployee(employee).then((response) => {
+            
+            console.log(response.data)
+
+            history.push('/employees');
+
+        }).catch(error => {
+            console.log(error)
+        })
+
     } 
 
     return (
@@ -63,7 +80,9 @@ const AddEmployeeComponent = () => {
                                             </input>
                                 </div>     
 
-                                <button className="btn btn-success center-button" onClick={ (e) => saveEmployee(e)}>All_Mighty_Push</button>                           
+                                     <button className="btn btn-success center-button" onClick={ (e) => saveEmployee(e)}>All_Mighty_Push</button>   
+                                 
+                                     <Link to="/employee" className='btn btn-danger' >Cancel</Link>                    
                             </form>
                         </div>
                     </div>

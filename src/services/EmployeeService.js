@@ -9,6 +9,11 @@ class EmployeeService{
         return axios.get(EMPLOYEE_BASE_REST_API_URL)
         // The .get will call the backend GET METHOD 
     }
+    createEmployee(employee){
+        return axios.post(EMPLOYEE_BASE_REST_API_URL, employee)
+        //employee contains form data like firstname,lastname,emailid
+        //and then its sent to axios which is promise object ogf axios method with the post method
+    }
 }
 
 export default new EmployeeService();
