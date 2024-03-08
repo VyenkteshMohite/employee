@@ -16,9 +16,6 @@ const ListEmployeeComponent = () => {
       })
      
     }, [])
-    
-
-
 
   return (
     <div className="container">
@@ -30,6 +27,7 @@ const ListEmployeeComponent = () => {
             <th>Employees FirstName</th>
             <th>Employee LastName</th>
             <th>Employee Emailid</th>
+            <th>Actions</th>
           </thead>
           <tbody>
             {
@@ -40,6 +38,9 @@ const ListEmployeeComponent = () => {
                   <td>{employee.firstName}</td>
                   <td>{employee.lastName}</td>
                   <td>{employee.emailId}</td>
+                  <td>
+                    <Link className="btn btn-info"  to={`/edit-employee/${employee.id}`}>Upadate</Link>
+                  </td>
 
                 </tr>
               )
