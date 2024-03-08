@@ -15,7 +15,7 @@ class EmployeeService{
         //and then its sent to axios which is promise object ogf axios method with the post method
     }
     getEmployeeById(employeeId){
-        return axios.get(EMPLOYEE_BASE_REST_API_URL + '/' + employeeId);
+        return axios.get(EMPLOYEE_BASE_REST_API_URL + employeeId);
     }
 }
 
