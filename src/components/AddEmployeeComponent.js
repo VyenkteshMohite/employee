@@ -13,31 +13,61 @@ const AddEmployeeComponent = () => {
     const history = useNavigate();
     const params = useParams();
 
-    const saveEmployee = (e) => {
+    // const saveEmployee = (e) => {
+    //     e.preventDefault();
+
+    //     const employee = {firstName,lastName,emailId}        
+       
+    //     //here we are calling the employeeservice with createEmployee Method and we are passing the employee object 
+    //     //then is the iterator promise
+    //     EmployeeService.createEmployee(employee).then((response) => {
+            
+    //         console.log(response.data)
+
+    //         history.push('/employees');
+
+    //     }).catch(error => {
+    //         console.log(error)
+    //     })
+    // } 
+    // this is also correct the below one is the changes and correction of this code
+    
+    const saveOrUpdateEmployee = (e) => {
         e.preventDefault();
 
-        const employee = {firstName,lastName,emailId}        
-       
-        //here we are calling the employeeservice with createEmployee Method and we are passing the employee object 
-        //then is the iterator promise
-        EmployeeService.createEmployee(employee).then((response) => {
-            
-            console.log(response.data)
+        const employee = {firstName, lastName, emailId}
 
-            history.push('/employees');
+        if(params.id){
+            EmployeeService.updateEmployee(params.id, employee).then((response) => {
+                history.push('/employees')
+            }).catch(error => {
+                console.log(error)
+            })
 
-        }).catch(error => {
-            console.log(error)
-        })
-    } 
+        }else{
+            EmployeeService.createEmployee(employee).then((response) =>{
+
+                console.log(response.data)
     
+                history.push('/employees');
+    
+            }).catch(error => {
+                console.log(error)
+            })
+        }
+        
+    }
+
+
+
+
     useEffect(() => {
         // console.log("id "+params.id)
         EmployeeService.getEmployeeById(params.id).then((response)=>{
             console.log(response.data)
-            // setFirstName(response.data.firstName)
-            // setLastName(response.data.lastName)
-            // setEmailId(response.data.emailId)
+            setFirstName(response.data.firstName)
+            setLastName(response.data.lastName)
+            setEmailId(response.data.emailId)
         }).catch(error =>{
             console.log(error)
         })
@@ -126,7 +156,7 @@ const AddEmployeeComponent = () => {
                                             </input>
                                 </div>     
 
-                                     <button className="btn btn-success center-button" onClick={ (e) => saveEmployee(e)}>All_Mighty_Push</button>   
+                                     <button className="btn btn-success center-button" onClick={ (e) => saveOrUpdateEmployee(e)}>Submit</button>   
                                  
                                      <Link to="/employee" className='btn btn-danger' >Cancel</Link>                    
                             </form>

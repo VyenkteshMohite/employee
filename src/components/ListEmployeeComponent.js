@@ -46,12 +46,7 @@ const ListEmployeeComponent = () => {
               )
             }
           </tbody>
-
-
-
-
         </table>
-
     </div>
   )
 }
